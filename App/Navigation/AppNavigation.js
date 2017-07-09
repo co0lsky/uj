@@ -1,15 +1,19 @@
 import { StackNavigator } from 'react-navigation'
+import DetailPage from '../Containers/DetailPage'
 import LaunchScreen from '../Containers/LaunchScreen'
+import HomePage from '../Containers/HomePage'
 
 import styles from './Styles/NavigationStyles'
 
 // Manifest of possible screens
 const PrimaryNav = StackNavigator({
-  LaunchScreen: { screen: LaunchScreen }
+  DetailPage: { screen: DetailPage },
+  LaunchScreen: { screen: LaunchScreen },
+  HomePage: { screen: HomePage }
 }, {
   // Default config for all screens
-  headerMode: 'none',
-  initialRouteName: 'LaunchScreen',
+  headerMode: 'screen',
+  initialRouteName: 'HomePage',
   navigationOptions: {
     headerStyle: styles.header
   }
