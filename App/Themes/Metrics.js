@@ -29,7 +29,8 @@ const metrics = {
     medium: 40,
     large: 60,
     logo: 200
-  }
+  },
+  listItemHeight: 50
 }
 
 export default metrics

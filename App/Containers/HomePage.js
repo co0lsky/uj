@@ -1,13 +1,19 @@
 import React from 'react'
+import { Text, View } from 'react-native'
 import { connect } from 'react-redux'
-import TabView from '../Components/TabView'
 import WordpressActions from '../Redux/WordpressRedux'
 
-// Add Actions - replace 'Your' with whatever your reducer is called :)
-// import YourActions from '../Redux/YourRedux'
+import TabView from '../Components/TabView'
+import MainTabBar from '../Components/MainTabBar'
+import CategoryList from '../Components/CategoryList'
 
 // Styles
 import styles from './Styles/HomePageStyle'
+
+const tabs = [
+  {text: 'News', icon: 'newspaper-o'},
+  {text: 'Discover', icon: 'compass'}
+]
 
 class HomePage extends React.Component {
   static navigationOptions = {
@@ -15,22 +21,40 @@ class HomePage extends React.Component {
   }
   constructor (props) {
     super(props)
-    this.state = {}
-  }
-
-  componentDidMount () {
-    this.props.getPosts()
+    this.state = {
+      index: 0
+    }
   }
 
   openDetail (post) {
-    console.log('HomePage onChange')
     this.props.navigation.navigate('DetailPage', {post: post})
-    // this.props.getPosts()
+  }
+
+  openCategory (category) {
+    this.props.navigation.navigate('CategoryPage', {category: category})
+  }
+
+  renderContent () {
+    switch (this.state.index) {
+      case 0:
+        return (<TabView onSelectPost={post => this.openDetail({post})} />)
+      case 1:
+        return (<CategoryList onSelectCategory={category => this.openCategory(category)} onSelectPost={post => this.openDetail({post})} />)
+      case 2:
+        return (<View>
+          <Text>Settings</Text>
+        </View>)
+      default:
+        return null
+    }
   }
 
   render () {
     return (
-      <TabView style={styles.container} onSelectPost={post => this.openDetail({post})} />
+      <View style={styles.container}>
+        {this.renderContent()}
+        <MainTabBar activeTab={this.state.index} tabLabels={tabs} tabs={tabs} goToPage={(index) => this.setState({index})} />
+      </View>
     )
   }
 }

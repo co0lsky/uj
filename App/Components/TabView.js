@@ -9,16 +9,13 @@ export default class TabView extends React.Component {
     super(props)
     this.state = {
       categories: [
-        {id: 16, name: 'Travel'},
-        {id: 36, name: 'Restaurant'},
-        {id: 34, name: 'Activities'},
-        {id: 41, name: 'Japanese cuisine'},
+        {id: 46, name: 'Top'},
+        {id: 40, name: 'Event'},
+        {id: 42, name: 'Food'},
         {id: 31, name: 'Signtseeing'},
-        {id: 26, name: 'Cafe'},
         {id: 12, name: 'Lifestyle'},
-        {id: 20, name: 'EHIME'},
-        {id: 33, name: 'Hotel'},
-        {id: 35, name: 'Shopping'}
+        {id: 35, name: 'Shopping'},
+        {id: 43, name: 'Carrer'}
       ]
     }
   }
@@ -26,14 +23,14 @@ export default class TabView extends React.Component {
   renderTab () {
     return this.state.categories.map((category) => {
       return (
-        <PostGridView onSelectPost={this.props.onSelectPost} categoryId={category.id} tabLabel={category.name} key={category.id} />
+        <PostGridView style={styles.container} onSelectPost={this.props.onSelectPost} categoryId={category.id} tabLabel={category.name} key={category.id} />
       )
     })
   }
 
   render () {
     return (
-      <ScrollableTabView style={styles.container} renderTabBar={() => <ScrollableTabBar />}>
+      <ScrollableTabView style={styles.container} renderTabBar={() => <ScrollableTabBar style={styles.tabBar} />}>
         {this.renderTab()}
       </ScrollableTabView>
     )

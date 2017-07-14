@@ -21,7 +21,7 @@ export default class PostGridView extends React.Component {
 
   getPosts () {
     this.setState({refreshing: true})
-    fetch(`${API_URL}/posts?categories=${this.props.categoryId}`)
+    fetch(`${API_URL}/posts?categories=${this.props.categoryId}&orderby=date`)
       .then((response) => response.json())
       .then((responseJson) => {
         // console.log(responseJson)

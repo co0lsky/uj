@@ -1,9 +1,10 @@
 import { StyleSheet } from 'react-native'
-import { Metrics } from '../../Themes/'
 
 export default StyleSheet.create({
   container: {
-    flex: 1,
-    paddingTop: Metrics.titlePadding
+    flex: 1
+  },
+  tabBar: {
+    // height: Metrics.navBarHeight
   }
 })
