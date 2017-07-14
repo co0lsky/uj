@@ -8,6 +8,7 @@ export default () => {
     nav: require('./NavigationRedux').reducer,
     github: require('./GithubRedux').reducer,
     search: require('./SearchRedux').reducer,
+    user: require('./UserRedux').reducer,
     wordpress: require('./WordpressRedux').reducer
   })
 

@@ -1,6 +1,7 @@
 import React from 'react'
 import { Text, View } from 'react-native'
 import { connect } from 'react-redux'
+import UserActions from '../Redux/UserRedux'
 import WordpressActions from '../Redux/WordpressRedux'
 
 import TabView from '../Components/TabView'
@@ -37,7 +38,7 @@ class HomePage extends React.Component {
   renderContent () {
     switch (this.state.index) {
       case 0:
-        return (<TabView onSelectPost={post => this.openDetail({post})} />)
+        return (<TabView onSelectPost={post => this.openDetail({post})} categories={this.props.channels} />)
       case 1:
         return (<CategoryList onSelectCategory={category => this.openCategory(category)} onSelectPost={post => this.openDetail({post})} />)
       case 2:
@@ -61,13 +62,15 @@ class HomePage extends React.Component {
 
 const mapStateToProps = (state) => {
   return {
-    posts: state.wordpress.payload
+    posts: state.wordpress.payload,
+    channels: state.user.channels
   }
 }
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    getPosts: () => dispatch(WordpressActions.wordpressRequest())
+    getPosts: () => dispatch(WordpressActions.wordpressRequest()),
+    addChannel: channel => dispatch(UserActions.addChannel(channel))
   }
 }
 
