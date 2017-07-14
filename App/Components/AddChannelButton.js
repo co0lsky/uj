@@ -13,10 +13,20 @@ class AddChannelButton extends React.Component {
     }
   }
 
+  componentDidMount () {
+    this.setState({
+      buttonTitle: this.isAdded() ? 'Added' : 'Add'
+    })
+  }
+
+  isAdded () {
+    return this.props.channels.filter((channel) =>
+        channel.name === this.props.category.name
+      ).length > 0
+  }
+
   _onPress () {
-    if (this.props.channels.filter((channel) =>
-      channel.name === this.props.category.name
-      ).length === 0) {
+    if (!this.isAdded()) {
       this.props.addChannel(this.props.category)
     }
     this.setState({
