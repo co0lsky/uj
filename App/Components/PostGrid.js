@@ -14,10 +14,12 @@ export default class PostGrid extends React.Component {
   }
 
   componentDidMount () {
+    this.mounted = true
     fetch(this.props.post._links['wp:featuredmedia'][0].href)
       .then((response) => response.json())
       .then((responseJson) => {
         // console.log(responseJson)
+        if (!this.mounted) return
         this.setState({image: responseJson.guid.rendered})
       })
       .catch((error) => {
@@ -28,11 +30,16 @@ export default class PostGrid extends React.Component {
       .then((response) => response.json())
       .then((responseJson) => {
         // console.log(responseJson)
+        if (!this.mounted) return
         this.setState({author: responseJson.name})
       })
       .catch((error) => {
         console.error(error)
       })
+  }
+
+  componentWillUnmount () {
+    this.mounted = false
   }
 
   renderImage () {

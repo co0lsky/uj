@@ -5,23 +5,8 @@ import styles from './Styles/TabViewStyle'
 import PostGridView from './PostGridView'
 
 export default class TabView extends React.Component {
-  constructor (props) {
-    super(props)
-    this.state = {
-      categories: [
-        {id: 46, name: 'Top'},
-        {id: 40, name: 'Event'},
-        {id: 42, name: 'Food'},
-        {id: 31, name: 'Signtseeing'},
-        {id: 12, name: 'Lifestyle'},
-        {id: 35, name: 'Shopping'},
-        {id: 43, name: 'Carrer'}
-      ]
-    }
-  }
-
   renderTab () {
-    return this.state.categories.map((category) => {
+    return this.props.categories.map((category) => {
       return (
         <PostGridView style={styles.container} onSelectPost={this.props.onSelectPost} categoryId={category.id} tabLabel={category.name} key={category.id} />
       )

@@ -16,6 +16,7 @@ export default class PostGridView extends React.Component {
   }
 
   componentDidMount () {
+    this.mounted = true
     this.getPosts()
   }
 
@@ -25,12 +26,18 @@ export default class PostGridView extends React.Component {
       .then((response) => response.json())
       .then((responseJson) => {
         // console.log(responseJson)
+        if (!this.mounted) return
         this.setState({data: responseJson, refreshing: false})
       })
       .catch((error) => {
-        console.error(error)
+        console.log(error)
+        if (!this.mounted) return
         this.setState({refreshing: false})
       })
+  }
+
+  componentWillUnmount () {
+    this.mounted = false
   }
 
   render () {

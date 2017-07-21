@@ -1,4 +1,4 @@
-import { StyleSheet } from 'react-native'
+import { StyleSheet, Platform } from 'react-native'
 import { Metrics } from '../../Themes/'
 
 export default StyleSheet.create({
@@ -11,10 +11,11 @@ export default StyleSheet.create({
     paddingLeft: Metrics.baseMargin,
     height: Metrics.listItemHeight,
     borderBottomColor: '#bbb',
-    borderBottomWidth: StyleSheet.hairlineWidth
+    borderBottomWidth: 0
   },
   item: {
     height: Metrics.listItemHeight,
+    paddingTop: (Platform.OS === 'ios') ? 15 : 0,
     textAlign: 'justify',
     textAlignVertical: 'center'
   }

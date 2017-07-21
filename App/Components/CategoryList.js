@@ -14,6 +14,7 @@ export default class CategoryList extends React.Component {
   }
 
   componentDidMount () {
+    this.mounted = true
     this.getCategories()
   }
 
@@ -23,12 +24,18 @@ export default class CategoryList extends React.Component {
       .then((response) => response.json())
       .then((responseJson) => {
         // console.log(responseJson)
+        if (!this.mounted) return
         this.setState({data: responseJson, refreshing: false})
       })
       .catch((error) => {
         console.error(error)
+        if (!this.mounted) return
         this.setState({refreshing: false})
       })
+  }
+
+  componentWillUnmount () {
+    this.mounted = false
   }
 
   _keyExtractor = (item, index) => item.id
@@ -47,6 +54,17 @@ export default class CategoryList extends React.Component {
     )
   }
 
+  _renderSeparator = () => {
+    return (
+      <View
+        style={{
+          height: 1,
+          backgroundColor: '#CED0CE'
+        }}
+      />
+    )
+  }
+
   render () {
     if (this.state.refreshing) {
       return (
@@ -58,9 +76,11 @@ export default class CategoryList extends React.Component {
     return (
       <View style={styles.container}>
         <FlatList
+          style={{flex: 1}}
           data={this.state.data}
           keyExtractor={this._keyExtractor}
           renderItem={({item}) => this._renderItem(item)}
+          ItemSeparatorComponent={this._renderSeparator}
         />
       </View>
     )
