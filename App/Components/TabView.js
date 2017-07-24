@@ -8,7 +8,7 @@ export default class TabView extends React.Component {
   renderTab () {
     return this.props.categories.map((category) => {
       return (
-        <PostGridView style={styles.container} onSelectPost={this.props.onSelectPost} categoryId={category.id} tabLabel={category.name} key={category.id} />
+        <PostGridView style={styles.container} onSelectPost={this.props.onSelectPost} categoryId={category.id} tabLabel={category.name} key={category.id + '_' + category.name} />
       )
     })
   }

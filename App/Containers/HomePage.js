@@ -4,9 +4,10 @@ import { connect } from 'react-redux'
 import UserActions from '../Redux/UserRedux'
 import WordpressActions from '../Redux/WordpressRedux'
 
+import DiscoverPage from '../Containers/DiscoverPage'
+
 import TabView from '../Components/TabView'
 import MainTabBar from '../Components/MainTabBar'
-import CategoryList from '../Components/CategoryList'
 
 // Styles
 import styles from './Styles/HomePageStyle'
@@ -31,16 +32,12 @@ class HomePage extends React.Component {
     this.props.navigation.navigate('DetailPage', {post: post})
   }
 
-  openCategory (category) {
-    this.props.navigation.navigate('CategoryPage', {category: category})
-  }
-
   renderContent () {
     switch (this.state.index) {
       case 0:
         return (<TabView onSelectPost={post => this.openDetail({post})} categories={this.props.channels} />)
       case 1:
-        return (<CategoryList onSelectCategory={category => this.openCategory(category)} onSelectPost={post => this.openDetail({post})} />)
+        return (<DiscoverPage navigation={this.props.navigation} />)
       case 2:
         return (<View>
           <Text>Settings</Text>

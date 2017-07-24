@@ -20,7 +20,7 @@ export const INITIAL_STATE = Immutable({
     {id: 31, name: 'Signtseeing'},
     {id: 12, name: 'Lifestyle'},
     {id: 35, name: 'Shopping'},
-    {id: 43, name: 'Carrer'}
+    {id: 43, name: 'Career'}
   ]
 })
 

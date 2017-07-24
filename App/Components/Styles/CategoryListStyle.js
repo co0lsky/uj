@@ -15,7 +15,7 @@ export default StyleSheet.create({
   },
   item: {
     height: Metrics.listItemHeight,
-    paddingTop: (Platform.OS === 'ios') ? 15 : 0,
+    paddingTop: (Platform.OS === 'ios') ? 15 : 7,
     textAlign: 'justify',
     textAlignVertical: 'center'
   }
