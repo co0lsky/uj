@@ -1,4 +1,10 @@
 {
   "name": "Unlock Japan",
-  "displayName": "UJ"
+  "displayName": "UJ",
+  "expo": {
+    "name": "UJ",
+    "slug": "uj",
+    "sdkVersion": "19.0.0",
+    "privacy": "unlisted"
+  }
 }

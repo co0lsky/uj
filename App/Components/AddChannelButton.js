@@ -28,10 +28,15 @@ class AddChannelButton extends React.Component {
   _onPress () {
     if (!this.isAdded()) {
       this.props.addChannel(this.props.category)
+      this.setState({
+        buttonTitle: 'Added'
+      })
+    } else {
+      this.props.removeChannel(this.props.category)
+      this.setState({
+        buttonTitle: 'Add'
+      })
     }
-    this.setState({
-      buttonTitle: 'Added'
-    })
   }
 
   render () {
@@ -51,7 +56,8 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    addChannel: channel => dispatch(UserActions.addChannel(channel))
+    addChannel: channel => dispatch(UserActions.addChannel(channel)),
+    removeChannel: channel => dispatch(UserActions.removeChannel(channel))
   }
 }
 

@@ -4,7 +4,8 @@ import Immutable from 'seamless-immutable'
 /* ------------- Types and Action Creators ------------- */
 
 const { Types, Creators } = createActions({
-  addChannel: ['channel']
+  addChannel: ['channel'],
+  removeChannel: ['channel']
 })
 
 export const UserTypes = Types
@@ -30,8 +31,15 @@ export const addChannel = (state, { channel }) => {
   return state.merge({ channels: [...state.channels, channel] })
 }
 
+export const removeChannel = (state, { channel }) => {
+  return state.merge({
+    channels: state.channels.filter(item => item.id !== channel.id || item.name !== channel.name)
+  })
+}
+
 /* ------------- Hookup Reducers To Types ------------- */
 
 export const reducer = createReducer(INITIAL_STATE, {
-  [Types.ADD_CHANNEL]: addChannel
+  [Types.ADD_CHANNEL]: addChannel,
+  [Types.REMOVE_CHANNEL]: removeChannel
 })

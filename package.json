@@ -26,6 +26,7 @@
   },
   "dependencies": {
     "apisauce": "^0.14.0",
+    "expo": "^19.0.0",
     "format-json": "^1.0.3",
     "jest-cli": "^20.0.4",
     "lodash": "^4.17.2",
